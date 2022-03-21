@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Galois 理论</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async>
+</script>
+
+<link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
+<script src="https://tikzjax.com/v1/tikzjax.js"></script>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+/* 头部样式 */
+.header {
+  background-color: #2e7bcf;
+  padding: 20px;
+  text-align: center;
+  font-size: 40px;
+}
+
+/* 导航条 */
+.topnav {
+  overflow: hidden;
+  background-color: rgb(9, 87, 140);
+  height:60px;
+  font-size: 25px;
+}
+
+/* 导航链接 */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* 链接 */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* 创建三个不相等的列 */
+.column {
+  float: left;
+  padding: 10px;
+}
+
+/* 左右两侧 */
+.column.side {
+  width: 15%;
+  height:2000px;
+  background: rgb(158, 235, 71);
+  color:rgb(46, 46, 156);
+}
+
+/* 中间区域 */
+.column.middle {
+  width: 70%;
+  height:2000px;
+  background: rgb(255, 255, 255);
+  color:black;
+  font-size: 20px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1><title>Galois 理论</title></h1>
+  <p>Galois 理论</p>
+</div>
+
+<div class="topnav">
+  <a href="#">链接</a>
+  <a href="#">链接</a>
+  <a href="#">链接</a>
+</div>
+
+<div class="row">
+  <div class="column side">
+    <h2>左侧栏</h2>
+    <ul>
+        <li><a href="#">代数扩张和有限扩张</a></li>
+        <li><a href="#">正规扩张</a></li>
+        <li><a href="#">Galois 对应</a></li>
+    </ul>
+  </div>
+  
+  <div class="column middle">
+    <h2>Galois 对应：实例</h2>
+    <p>
+        <b>例1.</b> 令 \(F=\mathbb{Q}\), \(E=F(2^{1/3},\mu_3)\)。我们看到 \(E\) 是 \(F\) 上的多项式
+        $$
+          x^3-2
+        $$
+        的分裂域，即 \(E\) 是通过 \(F\) 通过添加这个多项式的三个根 \(2^{1/3},\mu_32^{1/3},\mu_3^22^{1/3}\)
+        得到的，因而有正规扩域的性质，得到 \(E/F\) 正规。对任意 \(g\in G(E/F)\)，由关于域嵌入的性质，任意 \(\beta\in E\) 的像 \(g(\beta)\) 也是极小多项式 \(m_{\beta}(x)\) 的根。于是我们可以通过生成元 \(2^{1/3},\,\mu_3\) 的像来确定元素 \(g\in G(E/F)\)。
+      </p>
+      <p>
+          对生成元 \(2^{1/3}\)，注意到 \(g(2^{1/3})\) 也必须是 \(x^3-2\) 的一个根，因而有三种可能
+          $$
+              g(2^{1/3})=2^{1/3},\,\mu_32^{1/3},\,\mu_3^22^{1/3}.
+          $$
+          另一方面对生成元 \(\mu_3\)，它的极小多项式是
+          $$
+              \frac{x^3-1}{x-1}=1+x+x^2.
+          $$
+          所以 \(g(\mu_3)\) 有两种可能
+          $$
+              g(\mu_3)=\mu_3,\,\mu_3^2.
+          $$
+      </p>
+      <p>
+          注意到
+          $$
+              K_1:=F(2^{1/3})
+          $$
+          是 \(E/F\) 的一个中间域，且
+          $$
+              [E:K_1]=2,\,[K_1:F]=3,\,E=K_1(\mu_3).
+          $$
+          定义元素 \(\sigma,\,\tau\)满足
+          $$
+              \sigma(2^{1/3})=\mu_32^{1/3},\,\sigma(\mu_3)=\mu_3
+          $$
+          和
+          $$
+              \tau(2^{1/3})=2^{1/3},\,\tau(\mu_3)=\mu^2_3.
+          $$
+      </p>
+      <p>
+        <script type="text/tikz">
+            \begin{picture}
+            \begin{tikzpicture}
+            \centering
+            \node(p0) at (0,0.5) {$\mathbb{Q}[2^{1/3},\mu_3]$};
+            \node(p1) at (-3,-1) {$\mathbb{Q}[2^{1/3}]$};
+            \node(p2) at (-1,-1) {$\mathbb{Q}[\mu_3 2^{1/3}]$};
+            \node(p3) at (1,-1) {$\mathbb{Q}[\mu_3^2 2^{1/3}]$};
+            \node(p4) at (4,-2) {$\mathbb{Q}[\mu_3]$};
+            \node(p5) at (0,-3) {$\mathbb{Q}$};
+            \draw (p0)--(p1);
+            \draw (p0)--(p2);
+            \draw (p0)--(p3);
+            \draw (p0)--(p4);
+            \draw (p5)--(p1);
+            \draw (p5)--(p2);
+            \draw (p5)--(p3);
+            \draw (p5)--(p4);						
+            \end{tikzpicture}
+            \end{picture}
+            </script>
+      </p>
+  </div>
+  
+  <div class="column side">
+    <h2>右侧栏</h2>
+    <p></p>
+  </div>
+</div>
+  
+</body>
+</html>
